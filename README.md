@@ -221,6 +221,11 @@ const webpackConfig = require(webpackConfigUrl)
       'process.env': env,
       TEST: true 
     }),
+    同时webpack.dev.conf.js中(本地测试)也需要设置TEST:true
+   new webpack.DefinePlugin({
+      'process.env': require('../config/dev.env'),
+      TEST: true
+    }),
 
 步骤5:根据TEST设置地址
 我们项目是在常量文件中(config.constant.js)配置的API,根据实际项目变化

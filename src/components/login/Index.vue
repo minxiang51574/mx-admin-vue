@@ -199,7 +199,8 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/img/login-bg.jpg");
+//   background-image: url("../../assets/img/login-bg.jpg");
+  background-color: #f1f1f1;
   background-size: cover;
   background-position: center;
   .logon_box {
@@ -210,7 +211,7 @@ export default {
     left: 80%;
     transform: translate(-50%, -50%);
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #b5c5cc;
     padding: 20px;
     background-color: rgba(32, 38, 62, 0.8);
     .login_tab {
