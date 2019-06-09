@@ -199,8 +199,7 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-//   background-image: url("../../assets/img/login-bg.jpg");
-  background-color: #f1f1f1;
+  background-image: url("../../assets/img/login-bg.jpg");
   background-size: cover;
   background-position: center;
   .logon_box {
