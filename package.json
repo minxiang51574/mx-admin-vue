@@ -11,7 +11,7 @@
     "build-test": "node build/build.js test"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "countup.js": "^2.0.4",
     "echarts": "^4.2.1",
     "element-ui": "^2.6.3",
