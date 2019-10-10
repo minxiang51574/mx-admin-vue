@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-03 15:28:45
+ * @LastEditTime: 2019-09-25 17:35:56
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <el-header class="header" height="70px">
     <div class="btn">
@@ -24,7 +31,7 @@
       <div class="info">
         <img src="../../assets/logo.png" alt>
       </div>
-      <span>{{auth.userName == 'admin'? '管理员':'游客'}}</span>
+      <span>{{auth.userName}}</span>
       <el-dropdown style="margin-left:10px">
         <i class="el-icon-caret-right"></i>
         <el-dropdown-menu slot="dropdown">

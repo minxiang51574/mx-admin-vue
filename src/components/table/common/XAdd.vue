@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-03 15:28:45
+ * @LastEditTime: 2019-09-16 19:47:47
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
     <el-dialog
         width="640px"
@@ -8,17 +15,23 @@
         @close="close"
     >
     <el-form ref="form" @submit.native.prevent :model="form" label-width="80px">
-      <el-form-item label="日期："> 
-         <el-input v-model="form.date" ></el-input>
+      <el-form-item label="姓名："> 
+         <el-input v-model="form.name" ></el-input>
       </el-form-item>
-       <el-form-item label="姓名："> 
-           <el-input v-model="form.name" ></el-input>
+       <el-form-item label="状态："> 
+           <el-input v-model="form.status" ></el-input>
       </el-form-item>
        <el-form-item label="性别："> 
            <el-input v-model="form.sex"></el-input>
       </el-form-item>
+      <el-form-item label="部门："> 
+           <el-input v-model="form.department"></el-input>
+      </el-form-item>
        <el-form-item label="地址："> 
            <el-input v-model="form.address"></el-input>
+      </el-form-item>
+      <el-form-item label="年龄："> 
+           <el-input v-model="form.age"></el-input>
       </el-form-item>
 
     </el-form>
@@ -34,10 +47,12 @@ export default {
         return{
             visible:false,
             form:{
-                date:'',
                 name:'',
+                status:'',
                 sex:'',
-                address:''
+                department:"",
+                address:'',
+                age:"",
             }
         }
     },
@@ -49,7 +64,17 @@ export default {
             this.visible = false
         },
         submit(){
-            this.$emit('success',this.form)
+            this.$http
+            .post("/home/addList",this.form)
+            .then(res=>{
+                if(res.data.success){
+                    this.$message.success("添加成功")
+                    this.$emit("success")
+                }
+            })
+            .catch(err=>{
+                 this.$message.error("添加失败")
+            })
             this.close()
         }
     }

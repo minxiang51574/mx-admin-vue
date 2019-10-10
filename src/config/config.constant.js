@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-03 15:28:45
+ * @LastEditTime: 2019-10-10 15:15:59
+ * @LastEditors: Please set LastEditors
+ */
 /**
  * { 常量配置类 }
  *
@@ -7,7 +14,8 @@ export default {
   install(Vue) {
     //是否是测试环境 true 打包测试环境 false 打包生产环境
     const IS_TEST = false
-    const BASE_API = `//172.16.16.9${IS_TEST ? "0" : "1"}` //测试环境
+    // const BASE_API = `//192.9.8.24:3000` //测试环境
+    const BASE_API = `//49.235.152.190:3000` //正式环境
     Vue.prototype.API = BASE_API
    
     /**

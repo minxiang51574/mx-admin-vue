@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-03 15:28:45
+ * @LastEditTime: 2019-09-24 10:58:04
+ * @LastEditors: Please set LastEditors
+ */
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
@@ -12,7 +19,7 @@ import {
 Vue.use(Router)
 
 const router = new Router({
-     mode: "history",
+//   mode: "history",
   routes: [
     {
       path: '/',
@@ -53,7 +60,7 @@ router.beforeEach((to, from, next) => {
     })
   } else {
       //如果没有登陆 并且去的页面不是login 跳转到登陆
-    if (!store.getters.auth.token && to.name !== "login") {
+    if (!store.getters.auth && to.name !== "login") {
        next({ name: "login"})
     } else{
         //正常跳转

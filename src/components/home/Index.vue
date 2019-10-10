@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-03 15:28:45
+ * @LastEditTime: 2019-10-10 15:44:53
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="page_home">
     <div class="top">
@@ -5,9 +12,13 @@
         <el-col :span="8">
           <el-card>
             <div slot="header" class="clearfix">
-              <span>技术栈</span>
+              <span style="font-weight:900">项目介绍</span>
             </div>
-            <span>Vue</span>
+            <span>
+                <h3>技术栈为:vue+vuex+koa2+MySQL</h3>
+                断断续续历时几个月，从前端项目搭建，到后台koa2学习然后koa2后台接口以及数据库，接着到购买服务器域名，服务器前后台代码部署，一步一步总算结束了。自己在过程中不断的学习和请教成长了很多。万丈高楼平地起，继续加油！
+            </span>
+            <!-- <span>Vue</span>
             <el-progress :percentage="50"></el-progress>
             <span>Element</span>
             <el-progress :percentage="60"></el-progress>
@@ -16,7 +27,7 @@
             <span>React</span>
             <el-progress :percentage="80" status="success"></el-progress>
             <span>Redux</span>
-            <el-progress :percentage="90" status="exception"></el-progress>
+            <el-progress :percentage="90" status="exception"></el-progress> -->
           </el-card>
         </el-col>
         <el-col :span="16">
@@ -121,9 +132,9 @@ export default {
   },
   data() {
     return {
-      endVal1: 8599,
-      endVal2: 4890,
-      endVal3: 1571,
+      endVal1: 0,
+      endVal2: 0,
+      endVal3: 0,
       value4: null,
       activeNames: ["2","3"],
       options1: {
@@ -155,9 +166,29 @@ export default {
   computed:{
       ...mapGetters(['auth'])
   },
+  created(){
+      this.getNumList()
+  },
   methods: {
     handleChange(val) {
       console.log(val);
+    },
+    getNumList(){
+        this.$http
+        .get("/home/totalNum")
+        .then(res=>{
+          if (res.data.success) {
+              const {number1,number2,number3} = res.body.data
+              this.endVal1 = number1
+              this.endVal2 = number2
+              this.endVal3 = number3
+          }
+
+        })
+        .catch(err=>{
+            this.$message.error("请求失败请稍后再试")
+        })
+
     },
     open2() {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {

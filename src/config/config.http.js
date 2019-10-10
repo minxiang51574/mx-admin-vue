@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-03 15:28:45
+ * @LastEditTime: 2019-09-24 10:13:41
+ * @LastEditors: Please set LastEditors
+ */
 /**
  * { axios 配置 }
  */
@@ -37,11 +44,12 @@ export default {
         // 获取认证
         store.commit(GET_AUTH)
         const token = auth.token || ""
+
         //在请求发出之前进行一些操作
-        if (token) {
-          request.headers.common["Authorization"] = that.sha1(token)
-          request.headers.common["X-Auth-Token"] = token
-        }
+        // if (token) {
+        //   request.headers.common["Authorization"] = that.sha1(token)
+        //   request.headers.common["X-Auth-Token"] = token
+        // }
      
         if (request.params) {
         

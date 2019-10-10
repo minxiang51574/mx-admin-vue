@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-03 15:28:45
+ * @LastEditTime: 2019-09-24 11:59:19
+ * @LastEditors: Please set LastEditors
+ */
 import md5 from "js-md5"
 import Base64 from "js-base64"
 import Cookies from "js-cookie"
@@ -22,9 +29,9 @@ if (window.localStorage && window.localStorage.getItem) {
 const state = {
   data: {
     token: "", //登录令牌
+    userId:"",
     userName: "", //用户名
     resourceIds: "", //权限
-    roleNames: [], //角色名列表
     privileges: {} //权限
 
   }
@@ -133,24 +140,12 @@ const mutations = {
     try {
       data = JSON.parse(Base64.Base64.decode(ticket))
     } catch (e) {}
-    // if (data && data.host === HOST && Array.isArray(data.roleIds) && checkRole(data.roleIds)) {
-    if (data && data.host === HOST && Array.isArray(data.roleIds)) {
+    // if (data && data.host === HOST && Array.isArray(data.roleIds) && checkRole(data.roleIds)) 
+    if (data && Array.isArray(data.roleIds)) {
       state.data.token = data.token
       state.data.userId = data.userId
       state.data.userName = data.userName
-      state.data.nickName = data.nickName
-      state.data.phoneNumber = data.phoneNumber
-      state.data.oldUserId = data.oldUserId
-
       state.data.resourceIds = data.resourceIds
-      state.data.headImage = data.headImage
-      state.data.localUserName = data.userName
-      state.data.organization = data.organization
-      state.data.positionName = data.positionName
-      state.data.departmentName = data.departmentName
-      state.data.departmentIds = data.departmentIds
-      state.data.roleIds = data.roleIds
-      state.data.roleNames = data.roleNames
       state.data.privileges = data.privileges
     } else {
       state.data.token = ""

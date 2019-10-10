@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-03 15:28:45
+ * @LastEditTime: 2019-09-24 10:14:16
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="login">
     <div class="logon_box">
@@ -94,35 +101,51 @@ export default {
           //   login(params).then( res=>{})
 
           //实际项目操作2()
-          //   this.$http.post("url",params).then(res => {
-          //        let user = data.user || {};
-          //        user.token = data.token;
-          //        this.setAuth(user);
-          //        //发送请求,拿到用户信息，利用Vuex存储用户信息
-          //    })
+           let user = {};
+            this.$http.post("/login/login",this.form)
+            .then(res => {
+                  this.submitting = false;
+                if(res.data.success){
+                        user = res.data.data|| {};
+                       this.setAuth(user); 
+                       this.$router.push({ name: "home" });
+                       
+                }else{
+                    this.$message.error(res.data.message)
+                }
+                //  let user = data.user || {};
+                //  user.token = data.token;
+                //  this.setAuth(user); 
+                 //发送请求,拿到用户信息，利用Vuex存储用户信息
+             })
+             .catch(err=>{
+                  this.submitting = false;
+                  this.$message.error("登录失败,请稍后再试")
+             })
 
           //管理员假登陆
-          let user = {};
-          if (this.form.account == "admin") {
-            setTimeout(() => {
-              user.token = "f6b1e9f3";
-              user.userName = "admin";
-              user.resourceIds = "1;2"; //权限
-              this.setAuth(user);
-              this.submitting = false;
-              setTimeout(() => {
-                this.$router.push({ name: "home" });
-              }, 1000);
-            });
-          } else {
-            //游客假登陆
-            user.token = "f6b1e9f3";
-            user.userName = "guest";
-            user.resourceIds = "4"; //权限
-            this.setAuth(user);
-            this.submitting = false;
-            this.$router.push({ name: "home" });
-          }
+        //   let user = {};
+        //   if (this.form.account == "admin") {
+        //     setTimeout(() => {
+        //       user.token = "f6b1e9f3";
+        //       user.userName = "admin";
+        //       user.resourceIds = "1;2"; //权限
+        //       this.setAuth(user);
+        //       this.submitting = false;
+        //       setTimeout(() => {
+        //         this.$router.push({ name: "home" });
+        //       }, 1000);
+        //     });
+        //   } else {
+        //     //游客假登陆
+        //     user.token = "f6b1e9f3";
+        //     user.userName = "guest";
+        //     user.resourceIds = "4"; //权限
+        //     this.setAuth(user);
+        //     this.submitting = false;
+        //     this.$router.push({ name: "home" });
+        //   }
+
         }
       });
     },
