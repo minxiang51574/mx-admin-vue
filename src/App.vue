@@ -1,37 +1,24 @@
 <!--
- * @Author       : Mx
- * @Date         : 2023-05-06 10:03:18
- * @Description  : 
+ * @Author: Mx
+ * @Date: 2023-05-27 14:38:32
+ * @Description: 
 -->
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <router-view v-slot="{ Component }">
+    <Transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </Transition>
+  </router-view>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.fade-enter-from,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>
