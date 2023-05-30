@@ -7,6 +7,7 @@
   <div class="container">
     home
     <el-button @click="handleManage">跳转</el-button>
+    <el-button :loading="loading" @click="fetchData">接口请求</el-button>
 
     <div>token：{{ token }}</div>
     <div>getter值：{{ newName }}</div>
@@ -20,11 +21,14 @@
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store';
 import { storeToRefs } from 'pinia';
+import { login } from '@/api/login';
+import useLoading from '@/hooks/loading';
 
 const userStore = useUserStore();
 const router = useRouter();
+const { loading, setLoading } = useLoading(false);
 
-// console.log(import.meta.env.VITE_BASE_URL);
+// console.log(import.meta.env.VITE_APP_BASE_API);
 
 //storeToRefs 会跳过所有的 action 属性
 const { userInfo, token, newName } = storeToRefs(userStore);
@@ -46,6 +50,18 @@ const handleToken = () => {
 
 const handleManage = () => {
   router.push('/login');
+};
+
+const fetchData = async () => {
+  setLoading(true);
+  try {
+    const { data } = await login({ key: 123 });
+    console.log(data);
+  } catch (err) {
+    // you can report use errorHandler or other
+  } finally {
+    setLoading(false);
+  }
 };
 </script>
 <style lang="scss" scoped>

@@ -10,8 +10,13 @@ import viteCompression from 'vite-plugin-compression'; // gzip 压缩
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
-  const baseUrl = loadEnv(mode, process.cwd()).VITE_BASE_URL;
+  const env = loadEnv(mode, process.cwd());
+  const { VITE_APP_BASE_API, VITE_APP_ENV } = env;
   return defineConfig({
+    // 部署生产环境和开发环境下的URL。
+    // 默认情况下，vite 会假设你的应用是被部署在一个域名的根路径上
+    // 例如 https://minxiang.vip/。如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。例如，如果你的应用被部署在 https:/minxiang.vip/admin/，则设置 baseUrl 为 /admin/。
+    base: VITE_APP_ENV === 'production' ? '/admin/' : '/',
     plugins: [
       vue(),
       viteCompression({
@@ -28,14 +33,19 @@ export default ({ mode }) => {
       port: 8080,
       open: true,
       https: false,
-      proxy: {
-        '/api': {
-          target: baseUrl,
-          changeOrigin: true,
-          ws: true,
-          rewrite: (path: string) => path.replace(/^\/api/, ''),
-        },
-      },
+      // proxy: {
+      //   '/dev-api': {
+      //     target: 'http://127.0.0.1:8001',
+      //     changeOrigin: true,
+      //     ws: true,
+      //     rewrite: (path: string) => path.replace(/^\/dev-api/, ''),
+      //   },
+      //   '/pro-api': {
+      //     target: 'https://minxiang.vip',
+      //     changeOrigin: true,
+      //     rewrite: (path: string) => path.replace(/^\/pro-api/, ''),
+      //   },
+      // },
     },
     // 配置别名
     resolve: {

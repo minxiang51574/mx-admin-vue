@@ -30,6 +30,14 @@ const useUserStore = defineStore('user', {
     updateToken(token: string) {
       this.token = token;
     },
+    // Logout
+    async logout() {
+      try {
+        // await userLogout();
+      } finally {
+        // this.logoutCallBack();
+      }
+    },
   },
 
   // 开始数据持久化
