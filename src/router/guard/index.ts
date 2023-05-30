@@ -5,6 +5,7 @@
  */
 import type { Router } from 'vue-router';
 import NProgress from 'nprogress';
+import { useUserStore } from '@/store';
 /**
  * @description 路由守卫
  */
@@ -15,9 +16,18 @@ export default function createRouteGuard(router: Router) {
 const setupPermissionGuard = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
     NProgress.start();
+    const userStore = useUserStore();
     // 有token
-    // 没有token
-    next(`/login`); // 否则全部重定向到登录页
+    if (userStore.token) {
+      if (to.path === '/login') {
+        next();
+      } else {
+        next();
+      }
+    } else {
+      // 没有token
+      next(`/login`); // 否则全部重定向到登录页
+    }
     NProgress.done();
   });
   router.afterEach(() => {

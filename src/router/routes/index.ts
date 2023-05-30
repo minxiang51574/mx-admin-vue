@@ -5,23 +5,27 @@
  */
 const routes = [
   {
-    path: '/',
-    redirect: 'login',
-  },
-  {
     path: '/login',
     name: 'login',
     component: () => import('@/views/login/index.vue'), //路由懒加载
   },
   {
-    path: '/home',
-    name: 'home',
-    component: () => import('@/views/home/index.vue'),
-  },
-  {
     path: '/:pathMatch(.*)*',
     name: 'notFound',
     component: () => import('@/views/not-found/index.vue'),
+  },
+  {
+    path: '',
+    component: () => import('@/layout/index.vue'),
+    redirect: '/home',
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/views/home/index.vue'),
+        meta: { title: '首页', icon: 'dashboard' },
+      },
+    ],
   },
 ];
 
