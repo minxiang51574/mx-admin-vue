@@ -6,17 +6,20 @@
 <template>
   <div class="app-layout">
     <div class="app-layout__left">
-      <!-- <slider /> -->
+      <Slider />
     </div>
     <div class="app-layout__right">
       <Topbar />
       <Process />
+      <Main />
     </div>
   </div>
 </template>
 <script lang="ts" name="app-layout" setup>
+import Slider from './components/slider.vue';
 import Topbar from './components/topbar.vue';
 import Process from './components/process.vue';
+import Main from './components/main.vue';
 </script>
 <style lang="scss" scoped>
 .app-layout {
