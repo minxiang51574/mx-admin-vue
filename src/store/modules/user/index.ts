@@ -4,6 +4,7 @@
  * @Description:
  */
 import { defineStore } from 'pinia';
+import { login as userLogin } from '@/api/user';
 // defineStore 第一个参数是id，必需且值唯一
 const useUserStore = defineStore('user', {
   //state返回一个函数，防止作用域污染
@@ -36,6 +37,14 @@ const useUserStore = defineStore('user', {
         // await userLogout();
       } finally {
         // this.logoutCallBack();
+      }
+    },
+    // Login
+    async login() {
+      try {
+        await userLogin();
+      } catch (err) {
+        /* empty */
       }
     },
   },

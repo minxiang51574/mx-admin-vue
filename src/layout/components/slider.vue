@@ -7,7 +7,8 @@
 
     <div class="app-slider__container">
       <el-scrollbar wrap-class="scrollbar-wrapper">
-        <el-menu default-active="2" class="el-menu-vertical-demo">
+        <Menu />
+        <!-- <el-menu default-active="2" class="el-menu-vertical-demo">
           <el-sub-menu index="1">
             <template #title>
               <span>Navigator One</span>
@@ -29,12 +30,13 @@
           <el-menu-item index="4">
             <span>Navigator Four</span>
           </el-menu-item>
-        </el-menu>
+        </el-menu> -->
       </el-scrollbar>
     </div>
   </div>
 </template>
 <script lang="ts" name="app-slider" setup>
+import Menu from './menu';
 import { computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useMenuStore } from '@/store';

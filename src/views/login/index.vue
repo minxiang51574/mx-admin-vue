@@ -4,8 +4,23 @@
  * @Description: 
 -->
 <template>
-  <div class="container">login</div>
+  <div class="container">
+    <el-button type="primary" @click="handleSubmit">login</el-button>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useUserStore } from '@/store';
+import { useRouter } from 'vue-router';
+
+const userStore = useUserStore();
+const router = useRouter();
+
+const handleSubmit = async () => {
+  await userStore.login();
+  router.push({
+    name: 'Workplace',
+  });
+};
+</script>
 <style lang="scss" scoped></style>

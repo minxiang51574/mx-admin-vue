@@ -21,7 +21,6 @@
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store';
 import { storeToRefs } from 'pinia';
-import { login } from '@/api/login';
 import useLoading from '@/hooks/loading';
 
 const userStore = useUserStore();
@@ -55,8 +54,8 @@ const handleManage = () => {
 const fetchData = async () => {
   setLoading(true);
   try {
-    const { data } = await login({ key: 123 });
-    console.log(data);
+    // const { data } = await login({ key: 123 });
+    // console.log(data);
   } catch (err) {
     // you can report use errorHandler or other
   } finally {
