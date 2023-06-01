@@ -5,6 +5,7 @@
  */
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import { resolve } from 'path'; //这个path用到了上面安装的@types/node
 import viteCompression from 'vite-plugin-compression'; // gzip 压缩
 
@@ -19,6 +20,7 @@ export default ({ mode }) => {
     base: VITE_APP_ENV === 'production' ? '/admin/' : '/',
     plugins: [
       vue(),
+      vueJsx(),
       viteCompression({
         //生成压缩包gz
         verbose: true, // 输出压缩成功
