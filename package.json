@@ -9,6 +9,7 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "ts": "vue-tsc --noEmit",
+    "lint-staged": "npx lint-staged",
     "lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx --max-warnings 0"
   },
   "dependencies": {
