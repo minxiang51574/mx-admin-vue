@@ -4,10 +4,10 @@
  * @Description  :
  */
 import { defineStore } from 'pinia';
-import { login as userLogin, logout as userLogout, getUserInfo, LoginData } from '@/api/user';
+import { login as userLogin, LoginData } from '@/api/user';
 // defineStore 第一个参数是id，必需且值唯一
 const useUserStore = defineStore('user', {
-  //state返回一个函数，防止作用域污染
+  // state返回一个函数，防止作用域污染
   state: () => ({
     userInfo: {
       name: 'zhangsan',
@@ -19,15 +19,15 @@ const useUserStore = defineStore('user', {
     newName: (state) => state.userInfo.name + 'vip',
   },
   actions: {
-    //更新整个对象
+    // 更新整个对象
     updateUserInfo(userInfo: { name: string; age: number }) {
       this.userInfo = userInfo;
     },
-    //更新对象中某个属性
+    // 更新对象中某个属性
     updateAge(age: number) {
       this.userInfo.age = age;
     },
-    //更新基础数据类型
+    // 更新基础数据类型
     updateToken(token: string) {
       this.token = token;
     },

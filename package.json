@@ -9,13 +9,18 @@
     "preview": "vite preview",
     "ts": "vue-tsc --noEmit",
     "prepare": "husky install",
-    "lint-staged": "npx lint-staged",
     "lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx --max-warnings 0"
+  },
+  "lint-staged": {
+    "src/**/*.{vue,js,jsx,ts,tsx,json}": [
+      "yarn run lint",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.59.7",
     "@typescript-eslint/parser": "^5.59.7",
-    "axios": "^1.4.0",
+    "axios": "^0.26.1",
     "element-plus": "^2.2.28",
     "eslint": "^8.41.0",
     "eslint-plugin-vue": "^9.14.1",
@@ -25,12 +30,6 @@
     "vue": "^3.2.47",
     "vue-router": "^4.2.1",
     "yarn": "^1.22.19"
-  },
-  "lint-staged": {
-    "src/**/*.{vue,js,jsx,ts,tsx,json}": [
-      "yarn run lint",
-      "prettier --write"
-    ]
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",

@@ -3,16 +3,18 @@
  * @Date: 2023-06-01 12:38:10
  * @Description:
  */
-import { compile, defineComponent, h } from 'vue';
-import { useRouter, useRoute, RouteRecordRaw } from 'vue-router';
+import { defineComponent } from 'vue';
+import { useRoute, RouteRecordRaw } from 'vue-router';
 import { appRoutes } from '@/router/routes';
 export default defineComponent({
   setup() {
-    const router = useRouter();
     const route = useRoute();
-    // 页面跳转
-    const toView = () => {};
     const menuTree = appRoutes;
+
+    // 页面跳转
+    const toView = () => {
+      renderMenu();
+    };
 
     // 渲染菜单
     const renderMenu = () => {

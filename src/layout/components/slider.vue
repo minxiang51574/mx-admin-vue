@@ -14,15 +14,13 @@
 </template>
 <script lang="ts" name="app-slider" setup>
 import Menu from './menu';
-import { computed } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { useMenuStore } from '@/store';
+// import { computed } from 'vue';
+// import { useRouter, useRoute } from 'vue-router';
+// import { useMenuStore } from '@/store';
 
-const router = useRouter();
-const route = useRoute();
-const isCollapse = computed(() => true);
-const menuStore = useMenuStore();
-const menuList = menuStore.menuList;
+// const route = useRoute();
+// const menuStore = useMenuStore();
+// const menuList = menuStore.menuList;
 </script>
 <style lang="scss">
 .app-slider {
