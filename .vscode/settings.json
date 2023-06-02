@@ -1,6 +1,38 @@
 {
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true
-    }
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  // "stylelint.enable": true,
+  // // 关闭VS Code编辑器内置的样式规则检测规范，避免与Stylelint的检测规范重复|冲突
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "fileheader.customMade": {
+    "Author": "Mx",
+    "Date": "Do not edit", // 文件创建时间(不变)
+    "Description": ""
+  },
+  // 插件配置项
+  "fileheader.configObj": {
+    "wideSame": true, // 头部注释等宽设置
+    "wideNum": 13, // 头部注释字段长度 默认为13
+    "functionWideNum": 0, // 函数注释等宽设置 设为0 即为关闭
+    "moveCursor": true, // 自动移动光标到Description所在行
+    "dateFormat": "YYYY-MM-DD HH:mm:ss", // YYYY-MM-DD HH:mm:ss
+    "switch": {
+      "newlineAddAnnotation": true // 默认遇到换行符(\r\n \n \r)添加注释符号
+    },
+    "createHeader": true // 新建文件自动添加头部注释
+  },
+  "eslint.format.enable": true,
+  "stylelint.snippet": ["css", "less", "postcss", "vue", "sass"],
+  "stylelint.validate": ["css", "less", "postcss", "vue", "sass"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "prettier.singleQuote": true, // 单引号
+  "eslint.validate": ["javascript", "html", "vue", "typescript"]
 }
-  

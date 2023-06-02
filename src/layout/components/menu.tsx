@@ -14,8 +14,8 @@ export default defineComponent({
     const toView = () => {};
     const menuTree = appRoutes;
 
-    // 渲染子菜单
-    const renderSubMenu = () => {
+    // 渲染菜单
+    const renderMenu = () => {
       function travel(menuList: RouteRecordRaw[]) {
         return menuList.map((item: any) => {
           // 有子菜单
@@ -25,7 +25,7 @@ export default defineComponent({
             };
             return (
               <el-sub-menu index={item.path} v-slots={slots}>
-                {getMenu(item?.children)}
+                {travel(item?.children)}
               </el-sub-menu>
             );
           } else {
@@ -37,24 +37,6 @@ export default defineComponent({
       return travel(menuTree);
     };
 
-    //菜单生成
-    const getMenu = (menuList: any) => {
-      return menuList.map((item: any) => {
-        if (item?.children && item?.children?.length > 0) {
-          const slots = {
-            title: () => item.name,
-          };
-          return (
-            <el-sub-menu index={item.path} v-slots={slots}>
-              {getMenu(item?.children)}
-            </el-sub-menu>
-          );
-        } else {
-          return <el-menu-item index={item.path}>{item.name}</el-menu-item>;
-        }
-      });
-    };
-
     return () => (
       <div class="app-slider__menu">
         <el-menu
@@ -63,7 +45,7 @@ export default defineComponent({
           collapse-transition={true}
           onSelect={toView}
         >
-          {renderSubMenu()}
+          {renderMenu()}
         </el-menu>
       </div>
     );

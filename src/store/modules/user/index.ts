@@ -1,10 +1,10 @@
 /*
- * @Author: Mx
- * @Date: 2023-05-27 16:13:33
- * @Description:
+ * @Author       : mx
+ * @Date         : 2023-05-30 09:55:20
+ * @Description  :
  */
 import { defineStore } from 'pinia';
-import { login as userLogin } from '@/api/user';
+import { login as userLogin, logout as userLogout, getUserInfo, LoginData } from '@/api/user';
 // defineStore 第一个参数是id，必需且值唯一
 const useUserStore = defineStore('user', {
   //state返回一个函数，防止作用域污染
@@ -31,6 +31,7 @@ const useUserStore = defineStore('user', {
     updateToken(token: string) {
       this.token = token;
     },
+
     // Logout
     async logout() {
       try {
@@ -39,10 +40,12 @@ const useUserStore = defineStore('user', {
         // this.logoutCallBack();
       }
     },
+
     // Login
-    async login() {
+    async login(loginForm: LoginData) {
       try {
-        await userLogin();
+        const res = await userLogin(loginForm);
+        setToken(res.data.token);
       } catch (err) {
         /* empty */
       }
