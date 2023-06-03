@@ -9,12 +9,12 @@ import { appRoutes } from './routes';
 import createRouteGuard from './guard';
 
 const router = createRouter({
-  history: createWebHistory(), //可传参数，配置base路径，例如'/app'
+  history: createWebHistory(), // 可传参数，配置base路径，例如'/app'
   routes: [
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/login/index.vue'), //路由懒加载
+      component: () => import('@/views/login/index.vue'), // 路由懒加载
     },
     {
       path: '/:pathMatch(.*)*',

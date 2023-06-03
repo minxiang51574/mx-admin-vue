@@ -6,13 +6,13 @@
 import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
-import useListStore from './modules/list';
+import useAppStore from './modules/app';
 import useUserStore from './modules/user';
 import useMenuStore from './modules/menu';
 
 const store = createPinia();
 store.use(piniaPluginPersistedstate); // 使用持久化插件
 
-export { useUserStore, useListStore, useMenuStore };
+export { useUserStore, useAppStore, useMenuStore };
 
 export default store;

@@ -6,13 +6,13 @@
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import { resolve } from 'path'; //这个path用到了上面安装的@types/node
+import { resolve } from 'path';
 import viteCompression from 'vite-plugin-compression'; // gzip 压缩
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
   const env = loadEnv(mode, process.cwd());
-  const { VITE_APP_BASE_API, VITE_APP_ENV } = env;
+  const { VITE_APP_ENV } = env;
   return defineConfig({
     // 部署生产环境和开发环境下的URL。
     // 默认情况下，vite 会假设你的应用是被部署在一个域名的根路径上
@@ -22,7 +22,7 @@ export default ({ mode }) => {
       vue(),
       vueJsx(),
       viteCompression({
-        //生成压缩包gz
+        // 生成压缩包gz
         verbose: true, // 输出压缩成功
         disable: false, // 是否禁用
         threshold: 1, // 体积大于阈值会被压缩，单位是b

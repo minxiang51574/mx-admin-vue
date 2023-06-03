@@ -4,35 +4,32 @@
  * @Description  :
  */
 import { defineStore } from 'pinia';
-import { login as userLogin, LoginData } from '@/api/user';
+import { login as userLogin, LoginData, getUserInfo } from '@/api/user';
+import { setToken, clearToken } from '@/utils/auth';
+import { UserState } from './types';
+
 // defineStore 第一个参数是id，必需且值唯一
 const useUserStore = defineStore('user', {
   // state返回一个函数，防止作用域污染
-  state: () => ({
-    userInfo: {
-      name: 'zhangsan',
-      age: 23,
-    },
-    token: 'S1',
+  state: (): UserState => ({
+    role: 'admin',
+    name: 'mx',
+    avatar: undefined,
+    phone: undefined,
   }),
-  getters: {
-    newName: (state) => state.userInfo.name + 'vip',
-  },
   actions: {
-    // 更新整个对象
-    updateUserInfo(userInfo: { name: string; age: number }) {
-      this.userInfo = userInfo;
-    },
-    // 更新对象中某个属性
-    updateAge(age: number) {
-      this.userInfo.age = age;
-    },
-    // 更新基础数据类型
-    updateToken(token: string) {
-      this.token = token;
+    setInfo(partial: Partial<UserState>) {
+      // Partial<T> 可以将类型 T 中的每个属性都转换为可选属性
+      this.$patch(partial);
     },
 
-    // Logout
+    /** 获取用户信息 */
+    async info() {
+      const res = await getUserInfo();
+      this.setInfo(res.data);
+    },
+
+    /** Logout */
     async logout() {
       try {
         // await userLogout();
@@ -41,13 +38,14 @@ const useUserStore = defineStore('user', {
       }
     },
 
-    // Login
+    /** Login */
     async login(loginForm: LoginData) {
       try {
         const res = await userLogin(loginForm);
         setToken(res.data.token);
       } catch (err) {
-        /* empty */
+        clearToken();
+        throw err;
       }
     },
   },

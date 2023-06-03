@@ -11,6 +11,7 @@ module.exports = {
       'always',
       [
         'feat', // 新功能（feature）
+        'perf', // 优化
         'fix', // 修复bug
         'docs', // 修改文档
         'style', // 修改代码格式，不影响代码逻辑
