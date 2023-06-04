@@ -1,4 +1,9 @@
 /*
+ * @Author       : Mx
+ * @Date         : 2023-06-01 20:48:54
+ * @Description  :
+ */
+/*
  * @Author: Mx
  * @Date: 2023-06-01 10:57:21
  * @Description:
@@ -15,7 +20,6 @@ const LIST: AppRouteRecordRaw = {
     locale: 'menu.list',
     requiresAuth: true,
     icon: 'icon-list',
-    order: 2,
   },
   children: [
     {
@@ -32,6 +36,16 @@ const LIST: AppRouteRecordRaw = {
       path: 'card',
       name: 'Card',
       component: () => import('@/views/list/card/index.vue'),
+      meta: {
+        locale: 'menu.list.cardList',
+        requiresAuth: true,
+        roles: ['*'],
+      },
+    },
+    {
+      path: 'workplace',
+      name: 'workplace',
+      component: () => import('@/views/list/workplace/index.vue'),
       meta: {
         locale: 'menu.list.cardList',
         requiresAuth: true,

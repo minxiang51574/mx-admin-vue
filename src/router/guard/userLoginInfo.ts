@@ -11,7 +11,7 @@ import { isLogin } from '@/utils/auth';
 
 /** 登录获取用户信息和菜单 */
 export default function setupUserLoginInfoGuard(router: Router) {
-  router.beforeEach(async (to, from, next) => {
+  router.beforeEach(async (to, _from, next) => {
     NProgress.start();
     const userStore = useUserStore();
     const appStore = useAppStore();

@@ -48,7 +48,6 @@ request.interceptors.response.use(
   (response: AxiosResponse<HttpResponse>) => {
     const res = response.data;
     const userStore = useUserStore();
-
     if (res.code !== 200) {
       if (res.code === 401) {
         userStore.logout().then();
@@ -59,9 +58,13 @@ request.interceptors.response.use(
           type: 'error',
         });
       }
-      return Promise.reject(new Error(res.msg || 'Error'));
+      ElMessage({
+        message: res.msg,
+        type: 'error',
+      });
+      return Promise.reject(res.msg || 'Error');
     }
-    Promise.resolve(res.data);
+    return res;
   },
   (error) => {
     ElMessage.error({

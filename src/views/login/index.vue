@@ -69,10 +69,10 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
       try {
         await userStore.login(userInfo);
         router.push({
-          name: 'Workplace',
+          name: 'workplace',
         });
       } catch {
-        ElMessage.error('Oops, this is a error message.');
+        ElMessage.error('this is a error message.');
       } finally {
         setLoading(false);
       }

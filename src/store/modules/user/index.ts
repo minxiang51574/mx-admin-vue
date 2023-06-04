@@ -12,8 +12,8 @@ import { UserState } from './types';
 const useUserStore = defineStore('user', {
   // state返回一个函数，防止作用域污染
   state: (): UserState => ({
-    role: 'admin',
-    name: 'mx',
+    role: '',
+    name: '',
     avatar: undefined,
     phone: undefined,
   }),

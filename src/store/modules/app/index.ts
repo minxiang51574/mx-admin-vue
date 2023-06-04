@@ -12,7 +12,9 @@ const useAppStore = defineStore('app', {
   state: (): AppState => ({ ...defaultSettings }),
   actions: {
     async fetchServerMenuConfig() {
+      console.log('fetchServerMenuConfig');
       const { data } = await getMenuList();
+      console.log(data);
       this.serverMenu = data;
     },
   },
