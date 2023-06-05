@@ -33,5 +33,11 @@
   "stylelint.validate": ["css", "less", "postcss", "vue", "sass"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "prettier.singleQuote": true, // 单引号
-  "eslint.validate": ["javascript", "html", "vue", "typescript"]
+  "eslint.validate": [
+    "javascript",
+    "html",
+    "vue",
+    "typescript"
+  ],
+  "git.ignoreLimitWarning": true
 }

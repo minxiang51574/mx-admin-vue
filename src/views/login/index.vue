@@ -81,14 +81,6 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
     }
   });
 };
-
-// const handleSubmit2 = async () => {
-//   let values = { username: '1', password: '2' };
-//   await userStore.login(values as LoginData);
-//   router.push({
-//     name: 'Workplace',
-//   });
-// };
 </script>
 <style lang="scss" scoped>
 .login {

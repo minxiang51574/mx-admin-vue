@@ -7,6 +7,11 @@ const user = {
   path: '/login',
   name: 'login',
   component: () => import('@/views/login/index.vue'),
+  meta: {
+    locale: 'menu.list.cardList',
+    requiresAuth: true,
+    roles: ['*'],
+  },
 };
 
 export default user;

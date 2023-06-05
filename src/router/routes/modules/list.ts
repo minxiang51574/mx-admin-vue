@@ -1,9 +1,4 @@
 /*
- * @Author       : Mx
- * @Date         : 2023-06-01 20:48:54
- * @Description  :
- */
-/*
  * @Author: Mx
  * @Date: 2023-06-01 10:57:21
  * @Description:
@@ -17,7 +12,7 @@ const LIST: AppRouteRecordRaw = {
   name: 'list',
   component: DEFAULT_LAYOUT,
   meta: {
-    locale: 'menu.list',
+    locale: 'menu.dashboard',
     requiresAuth: true,
     icon: 'icon-list',
   },
@@ -27,7 +22,7 @@ const LIST: AppRouteRecordRaw = {
       name: 'SearchTable',
       component: () => import('@/views/list/search-table/index.vue'),
       meta: {
-        locale: 'menu.list.searchTable',
+        locale: 'menu.server.dashboard',
         requiresAuth: true,
         roles: ['*'],
       },
@@ -37,7 +32,7 @@ const LIST: AppRouteRecordRaw = {
       name: 'Card',
       component: () => import('@/views/list/card/index.vue'),
       meta: {
-        locale: 'menu.list.cardList',
+        locale: 'menu.server.workplace',
         requiresAuth: true,
         roles: ['*'],
       },
@@ -47,7 +42,7 @@ const LIST: AppRouteRecordRaw = {
       name: 'workplace',
       component: () => import('@/views/list/workplace/index.vue'),
       meta: {
-        locale: 'menu.list.cardList',
+        locale: 'menu.server.monitor',
         requiresAuth: true,
         roles: ['*'],
       },

@@ -1,19 +1,26 @@
 /*
  * @Author: Mx
  * @Date: 2023-06-01 12:38:10
- * @Description:
+ * @Description: menu
  */
 import { defineComponent } from 'vue';
-import { useRoute, RouteRecordRaw } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { useRoute, useRouter, RouteRecordRaw } from 'vue-router';
 import { appRoutes } from '@/router/routes';
+
 export default defineComponent({
   setup() {
+    const { t } = useI18n();
     const route = useRoute();
+    const router = useRouter();
     const menuTree = appRoutes;
 
-    // 页面跳转
-    const toView = () => {
-      renderMenu();
+    // 页面跳转 目前根据name去跳转 如需根据path自行完善
+    const toView = (url: string) => {
+      console.log(url, route);
+      if (url !== route.name) {
+        router.push({ name: url });
+      }
     };
 
     // 渲染菜单
@@ -23,16 +30,16 @@ export default defineComponent({
           // 有子菜单
           if (item?.children && item?.children?.length > 0) {
             const slots = {
-              title: () => item.name,
+              title: () => t(item.meta.locale),
             };
             return (
-              <el-sub-menu index={item.path} v-slots={slots}>
+              <el-sub-menu index={item.name} v-slots={slots}>
                 {travel(item?.children)}
               </el-sub-menu>
             );
           } else {
             // 没有子菜单
-            return <el-menu-item index={item.path}>{item.name}</el-menu-item>;
+            return <el-menu-item index={item.name}>{t(item.meta.locale)}</el-menu-item>;
           }
         });
       }

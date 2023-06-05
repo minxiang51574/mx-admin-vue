@@ -1,7 +1,7 @@
 <!--
  * @Author: Mx
  * @Date: 2023-05-30 22:17:06
- * @Description: 
+ * @Description: 导航
 -->
 <template>
   <div class="app-topbar">
@@ -11,11 +11,30 @@
     <!-- 路由导航 -->
     <!-- <route-nav /> -->
     导航
-    <div class="flex1"></div>
+    <div class="flex1">
+      <el-dropdown>
+        <span class="el-dropdown-link">语言切换</span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item v-for="item in locales" :key="item.value" :value="item.value" @click="handleClick(item)">
+              {{ item.label }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
   </div>
 </template>
 <script lang="ts" name="app-topbar" setup>
 // import RouteNav from './route-nav.vue';
+import useLocale from '@/hooks/locale';
+import { LOCALE_OPTIONS } from '@/locale';
+
+const locales = [...LOCALE_OPTIONS];
+const { changeLocale } = useLocale();
+const handleClick = (item: { value: string }) => {
+  changeLocale(item.value);
+};
 </script>
 <style lang="scss" scoped>
 .app-topbar {
