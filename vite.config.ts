@@ -1,4 +1,9 @@
 /*
+ * @Author       : Mx
+ * @Date         : 2023-05-28 21:21:27
+ * @Description  :
+ */
+/*
  * @Author: Mx
  * @Date: 2023-05-27 14:38:32
  * @Description:
@@ -54,6 +59,7 @@ export default ({ mode }) => {
       alias: {
         '@': resolve('./src'), // @代替src
         '#': resolve('./types'), // #代替types
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
       },
     },
     css: {

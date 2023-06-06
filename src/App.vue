@@ -1,3 +1,8 @@
+<!--
+ * @Author       : Mx
+ * @Date         : 2023-05-28 21:21:27
+ * @Description  : 
+-->
 <template>
   <el-config-provider :locale="locale">
     <router-view />
@@ -21,7 +26,6 @@ const locale = computed(() => {
       return zh;
   }
 });
-console.log(locale);
 </script>
 
 <style>
