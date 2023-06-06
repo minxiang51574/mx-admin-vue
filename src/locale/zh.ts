@@ -19,4 +19,6 @@ export default {
   'menu.faq': '常见问题',
   'navbar.docs': '文档中心',
   'navbar.action.locale': '切换为中文',
+  'settings.navbar.theme.toLight': '点击切换为亮色模式',
+  'settings.navbar.theme.toDark': '点击切换为暗黑模式',
 };

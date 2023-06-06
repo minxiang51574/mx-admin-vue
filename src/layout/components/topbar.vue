@@ -22,15 +22,32 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        :content="theme === 'light' ? $t('settings.navbar.theme.toDark') : $t('settings.navbar.theme.toLight')"
+        placement="bottom"
+      >
+        <el-button :icon="theme === 'light' ? Sunny : Moon" circle></el-button>
+      </el-tooltip>
     </div>
   </div>
 </template>
 <script lang="ts" name="app-topbar" setup>
+import { Moon, Sunny } from '@element-plus/icons-vue';
 // import RouteNav from './route-nav.vue';
 import useLocale from '@/hooks/locale';
 import { LOCALE_OPTIONS } from '@/locale';
+import { useAppStore } from '@/store';
+import { computed } from 'vue';
+
+const appStore = useAppStore();
 
 const locales = [...LOCALE_OPTIONS];
+const theme = computed(() => {
+  return appStore.theme;
+});
+
 const { changeLocale } = useLocale();
 const handleClick = (item: { value: string }) => {
   changeLocale(item.value);
