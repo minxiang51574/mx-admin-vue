@@ -28,7 +28,7 @@
         :content="theme === 'light' ? $t('settings.navbar.theme.toDark') : $t('settings.navbar.theme.toLight')"
         placement="bottom"
       >
-        <el-button :icon="theme === 'light' ? Sunny : Moon" circle></el-button>
+        <el-button :icon="theme === 'light' ? Sunny : Moon" circle @click="handleToggleTheme"></el-button>
       </el-tooltip>
     </div>
   </div>
@@ -40,13 +40,26 @@ import useLocale from '@/hooks/locale';
 import { LOCALE_OPTIONS } from '@/locale';
 import { useAppStore } from '@/store';
 import { computed } from 'vue';
-
+import { useDark, useToggle } from '@vueuse/core';
 const appStore = useAppStore();
 
 const locales = [...LOCALE_OPTIONS];
 const theme = computed(() => {
   return appStore.theme;
 });
+const isDark = useDark({
+  selector: 'html',
+  valueDark: 'dark',
+  valueLight: 'light',
+  storageKey: 'arco-theme',
+  onChanged(dark: boolean) {
+    appStore.toggleTheme(dark);
+  },
+});
+const toggleTheme = useToggle(isDark);
+const handleToggleTheme = () => {
+  toggleTheme();
+};
 
 const { changeLocale } = useLocale();
 const handleClick = (item: { value: string }) => {
@@ -59,7 +72,7 @@ const handleClick = (item: { value: string }) => {
   align-items: center;
   height: 50px;
   padding: 0 10px;
-  background-color: #fff;
+  // background-color: #fff;
   margin-bottom: 10px;
 
   &__collapse {

@@ -24,7 +24,7 @@ import Main from './components/main.vue';
 <style lang="scss" scoped>
 .app-layout {
   display: flex;
-  background-color: #f7f7f7;
+  // background-color: #f7f7f7;
   height: 100%;
   width: 100%;
   overflow: hidden;

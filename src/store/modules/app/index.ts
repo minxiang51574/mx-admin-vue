@@ -14,8 +14,17 @@ const useAppStore = defineStore('app', {
     async fetchServerMenuConfig() {
       console.log('fetchServerMenuConfig');
       const { data } = await getMenuList();
-      console.log(data);
       this.serverMenu = data;
+    },
+    toggleTheme(dark: boolean) {
+      const htmlTag = document.getElementsByTagName('html')[0];
+      if (dark) {
+        this.theme = 'dark';
+        htmlTag.classList.add('dark');
+      } else {
+        this.theme = 'light';
+        htmlTag.classList.remove('dark');
+      }
     },
   },
 });

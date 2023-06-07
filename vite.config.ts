@@ -59,7 +59,7 @@ export default ({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/assets/styles/index.scss";',
+          additionalData: '@import "@/assets/style/global.scss";',
         },
       },
     },
