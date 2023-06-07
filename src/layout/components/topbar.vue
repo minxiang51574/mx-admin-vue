@@ -12,6 +12,7 @@
     <!-- <route-nav /> -->
     导航
     <div class="flex1">
+      <!-- 多语言 -->
       <el-dropdown>
         <span class="el-dropdown-link">语言切换</span>
         <template #dropdown>
@@ -22,6 +23,7 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
+      <!-- 换肤 -->
       <el-tooltip
         class="box-item"
         effect="dark"
@@ -30,17 +32,26 @@
       >
         <el-button :icon="theme === 'light' ? Sunny : Moon" circle @click="handleToggleTheme"></el-button>
       </el-tooltip>
+      <!-- 全屏 -->
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        :content="isFullscreen ? $t('settings.navbar.screen.toExit') : $t('settings.navbar.screen.toFull')"
+        placement="bottom"
+      >
+        <el-button :icon="isFullscreen ? Notification : FullScreen" circle @click="toggleFullScreen"></el-button>
+      </el-tooltip>
     </div>
   </div>
 </template>
 <script lang="ts" name="app-topbar" setup>
-import { Moon, Sunny } from '@element-plus/icons-vue';
+import { Moon, Sunny, FullScreen, Notification } from '@element-plus/icons-vue';
 // import RouteNav from './route-nav.vue';
 import useLocale from '@/hooks/locale';
 import { LOCALE_OPTIONS } from '@/locale';
 import { useAppStore } from '@/store';
 import { computed } from 'vue';
-import { useDark, useToggle } from '@vueuse/core';
+import { useDark, useFullscreen, useToggle } from '@vueuse/core';
 const appStore = useAppStore();
 
 const locales = [...LOCALE_OPTIONS];
@@ -60,8 +71,8 @@ const toggleTheme = useToggle(isDark);
 const handleToggleTheme = () => {
   toggleTheme();
 };
-
 const { changeLocale } = useLocale();
+const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
 const handleClick = (item: { value: string }) => {
   changeLocale(item.value);
 };

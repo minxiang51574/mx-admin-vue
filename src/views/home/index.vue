@@ -37,8 +37,4 @@ const fetchData = async () => {
   }
 };
 </script>
-<style lang="scss" scoped>
-.container {
-  color: $test-color;
-}
-</style>
+<style lang="scss" scoped></style>
