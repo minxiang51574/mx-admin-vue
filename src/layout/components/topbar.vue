@@ -5,55 +5,83 @@
 -->
 <template>
   <div class="app-topbar">
-    <div class="app-topbar__collapse">
-      <i class="cl-iconfont cl-icon-fold"></i>
+    <div class="app-topbar__left">
+      <el-icon><Fold /></el-icon>
+      <el-icon><Expand /></el-icon>
     </div>
-    <!-- 路由导航 -->
-    <!-- <route-nav /> -->
-    导航
-    <div class="flex1">
+    <ul class="app-topbar__right">
       <!-- 多语言 -->
-      <el-dropdown>
-        <span class="el-dropdown-link">语言切换</span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item v-for="item in locales" :key="item.value" :value="item.value" @click="handleClick(item)">
-              {{ item.label }}
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      <li>
+        <el-dropdown>
+          语言
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item
+                v-for="item in locales"
+                :key="item.value"
+                :value="item.value"
+                @click="handleClick(item)"
+              >
+                {{ item.label }}
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </li>
       <!-- 换肤 -->
-      <el-tooltip
-        class="box-item"
-        effect="dark"
-        :content="theme === 'light' ? $t('settings.navbar.theme.toDark') : $t('settings.navbar.theme.toLight')"
-        placement="bottom"
-      >
-        <el-button :icon="theme === 'light' ? Sunny : Moon" circle @click="handleToggleTheme"></el-button>
-      </el-tooltip>
+      <li>
+        <el-tooltip
+          class="box-item"
+          effect="dark"
+          :content="theme === 'light' ? $t('settings.navbar.theme.toDark') : $t('settings.navbar.theme.toLight')"
+          placement="bottom"
+        >
+          <el-button :icon="theme === 'light' ? Sunny : Moon" circle @click="handleToggleTheme"></el-button>
+        </el-tooltip>
+      </li>
       <!-- 全屏 -->
-      <el-tooltip
-        class="box-item"
-        effect="dark"
-        :content="isFullscreen ? $t('settings.navbar.screen.toExit') : $t('settings.navbar.screen.toFull')"
-        placement="bottom"
-      >
-        <el-button :icon="isFullscreen ? Notification : FullScreen" circle @click="toggleFullScreen"></el-button>
-      </el-tooltip>
-    </div>
+      <li>
+        <el-tooltip
+          class="box-item"
+          effect="dark"
+          :content="isFullscreen ? $t('settings.navbar.screen.toExit') : $t('settings.navbar.screen.toFull')"
+          placement="bottom"
+        >
+          <el-button :icon="isFullscreen ? Notification : FullScreen" circle @click="toggleFullScreen"></el-button>
+        </el-tooltip>
+      </li>
+      <!--设置-->
+      <li>
+        <el-dropdown>
+          <el-avatar :size="32" :src="avatar" />
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item icon="el-icon-user">
+                <el-icon><User /></el-icon> 用户中心</el-dropdown-item
+              >
+              <el-dropdown-item icon="el-icon-lock">修改密码</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-switch-button">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </li>
+    </ul>
   </div>
 </template>
 <script lang="ts" name="app-topbar" setup>
-import { Moon, Sunny, FullScreen, Notification } from '@element-plus/icons-vue';
+import { Moon, Sunny, FullScreen, Notification, Fold, Expand, User } from '@element-plus/icons-vue';
 // import RouteNav from './route-nav.vue';
 import useLocale from '@/hooks/locale';
 import { LOCALE_OPTIONS } from '@/locale';
-import { useAppStore } from '@/store';
+import { useAppStore, useUserStore } from '@/store';
 import { computed } from 'vue';
 import { useDark, useFullscreen, useToggle } from '@vueuse/core';
-const appStore = useAppStore();
 
+const appStore = useAppStore();
+const userStore = useUserStore();
+const avatar = computed(() => {
+  return userStore.avatar;
+});
 const locales = [...LOCALE_OPTIONS];
 const theme = computed(() => {
   return appStore.theme;
@@ -83,64 +111,23 @@ const handleClick = (item: { value: string }) => {
   align-items: center;
   height: 50px;
   padding: 0 10px;
-  // background-color: #fff;
   margin-bottom: 10px;
+  justify-content: space-between;
 
-  &__collapse {
+  &__left {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
-    transform: rotateY(180deg);
-
-    &.unfold {
-      transform: rotateY(0);
-    }
-
-    i {
-      font-size: 20px;
-    }
+    height: 100%;
   }
 
-  .flex1 {
-    flex: 1;
-  }
-
-  &__tools {
+  &__right {
     display: flex;
-    margin-right: 20px;
-
-    & > li {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      list-style: none;
-      height: 45px;
-      min-width: 45px;
-      border-radius: 3px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-  }
-
-  &__user {
-    margin-right: 10px;
-    cursor: pointer;
-
-    .el-dropdown-link {
+    padding-right: 20px;
+    list-style: none;
+    li {
       display: flex;
       align-items: center;
-    }
-
-    .name {
-      white-space: nowrap;
-      margin-right: 15px;
-    }
-
-    .el-icon-arrow-down {
-      margin-left: 10px;
+      padding: 0 10px;
     }
   }
 }
