@@ -11,11 +11,6 @@ import { AppState } from './types';
 const useAppStore = defineStore('app', {
   state: (): AppState => ({ ...defaultSettings }),
   actions: {
-    async fetchServerMenuConfig() {
-      console.log('fetchServerMenuConfig');
-      const { data } = await getMenuList();
-      this.serverMenu = data;
-    },
     toggleTheme(dark: boolean) {
       const htmlTag = document.getElementsByTagName('html')[0];
       if (dark) {
@@ -25,6 +20,14 @@ const useAppStore = defineStore('app', {
         this.theme = 'light';
         htmlTag.classList.remove('dark');
       }
+    },
+    async fetchServerMenuConfig() {
+      console.log('fetchServerMenuConfig');
+      const { data } = await getMenuList();
+      this.serverMenu = data;
+    },
+    clearServerMenu() {
+      this.serverMenu = [];
     },
   },
 });

@@ -19,6 +19,10 @@ export function login(data: LoginData) {
   return request.post<LoginRes>('/api/user/login', data);
 }
 
+export function logout() {
+  return request.post<LoginRes>('/api/user/logout');
+}
+
 export function getUserInfo() {
   return request.post<UserState>('/api/user/info');
 }

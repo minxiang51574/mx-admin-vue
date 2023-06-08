@@ -37,6 +37,11 @@ Mock.mock(new RegExp('/api/user/login'), (params: MockParams) => {
   return failResponseWrap(null, '账号或者密码错误', 50000);
 });
 
+// 登出
+Mock.mock(new RegExp('/api/user/logout'), () => {
+  return successResponseWrap(null);
+});
+
 // 用户信息
 Mock.mock(new RegExp('/api/user/info'), () => {
   if (isLogin()) {

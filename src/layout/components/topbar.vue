@@ -56,11 +56,13 @@
           <el-avatar :size="32" :src="avatar" />
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item icon="el-icon-user">
-                <el-icon><User /></el-icon> 用户中心</el-dropdown-item
-              >
+              <el-dropdown-item>
+                <el-icon><User /></el-icon>用户中心
+              </el-dropdown-item>
               <el-dropdown-item icon="el-icon-lock">修改密码</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-switch-button">退出登录</el-dropdown-item>
+              <el-dropdown-item @click="handleLogout">
+                <el-icon><SwitchButton /></el-icon>退出登录
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -69,9 +71,10 @@
   </div>
 </template>
 <script lang="ts" name="app-topbar" setup>
-import { Moon, Sunny, FullScreen, Notification, Fold, Expand, User } from '@element-plus/icons-vue';
+import { Moon, Sunny, FullScreen, Notification, Fold, Expand, User, SwitchButton } from '@element-plus/icons-vue';
 // import RouteNav from './route-nav.vue';
 import useLocale from '@/hooks/locale';
+import useUser from '@/hooks/user';
 import { LOCALE_OPTIONS } from '@/locale';
 import { useAppStore, useUserStore } from '@/store';
 import { computed } from 'vue';
@@ -95,14 +98,22 @@ const isDark = useDark({
     appStore.toggleTheme(dark);
   },
 });
+
+// 切换日夜模式
 const toggleTheme = useToggle(isDark);
 const handleToggleTheme = () => {
   toggleTheme();
 };
 const { changeLocale } = useLocale();
 const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
+// 切换语言
 const handleClick = (item: { value: string }) => {
   changeLocale(item.value);
+};
+// 退出
+const { logout } = useUser();
+const handleLogout = () => {
+  logout();
 };
 </script>
 <style lang="scss" scoped>

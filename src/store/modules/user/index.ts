@@ -4,9 +4,10 @@
  * @Description  :
  */
 import { defineStore } from 'pinia';
-import { login as userLogin, LoginData, getUserInfo } from '@/api/user';
+import { login as userLogin, logout as userLogout, LoginData, getUserInfo } from '@/api/user';
 import { setToken, clearToken } from '@/utils/auth';
 import { UserState } from './types';
+import { useAppStore } from '@/store';
 
 // defineStore 第一个参数是id，必需且值唯一
 const useUserStore = defineStore('user', {
@@ -28,13 +29,25 @@ const useUserStore = defineStore('user', {
       const res = await getUserInfo();
       this.setInfo(res.data);
     },
+    // Reset user's information
+    resetInfo() {
+      this.$reset();
+    },
+
+    logoutCallBack() {
+      const appStore = useAppStore();
+      this.resetInfo();
+      clearToken();
+      // removeRouteListener();
+      appStore.clearServerMenu();
+    },
 
     /** Logout */
     async logout() {
       try {
-        // await userLogout();
+        await userLogout();
       } finally {
-        // this.logoutCallBack();
+        this.logoutCallBack();
       }
     },
 
