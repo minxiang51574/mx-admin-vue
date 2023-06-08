@@ -3,7 +3,7 @@
  * @Date: 2023-06-01 12:38:10
  * @Description: menu
  */
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter, RouteRecordRaw } from 'vue-router';
 import { appRoutes } from '@/router/routes';
@@ -30,6 +30,7 @@ export default defineComponent({
           // 有子菜单
           if (item?.children && item?.children?.length > 0) {
             const slots = {
+              icon: () => item?.meta?.icon,
               title: () => t(item.meta.locale),
             };
             return (
@@ -46,10 +47,16 @@ export default defineComponent({
       return travel(menuTree);
     };
 
+    // 是否折叠菜单
+    const isCollapse = computed(() => {
+      return false;
+    });
+
     return () => (
       <div class="app-slider__menu">
         <el-menu
           default-active={route.path}
+          collapse={isCollapse.value}
           background-color="transparent"
           collapse-transition={true}
           onSelect={toView}
