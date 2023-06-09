@@ -11,6 +11,13 @@ import { AppState } from './types';
 const useAppStore = defineStore('app', {
   state: (): AppState => ({ ...defaultSettings }),
   actions: {
+    // Update app settings
+    updateSettings(partial: Partial<AppState>) {
+      // @ts-ignore-next-line
+      this.$patch(partial);
+    },
+
+    // Change theme color
     toggleTheme(dark: boolean) {
       const htmlTag = document.getElementsByTagName('html')[0];
       if (dark) {

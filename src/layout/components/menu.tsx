@@ -7,12 +7,14 @@ import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter, RouteRecordRaw } from 'vue-router';
 import { appRoutes } from '@/router/routes';
+import { useAppStore } from '@/store';
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     const route = useRoute();
     const router = useRouter();
+    const appStore = useAppStore();
     const menuTree = appRoutes;
 
     // 页面跳转 目前根据name去跳转 如需根据path自行完善
@@ -49,7 +51,7 @@ export default defineComponent({
 
     // 是否折叠菜单
     const isCollapse = computed(() => {
-      return false;
+      return appStore.menuCollapse;
     });
 
     return () => (

@@ -2,9 +2,7 @@
   <div class="app-slider">
     <div class="app-slider__logo">
       <img src="/logo.png" />
-      <!-- <span v-if="!app.isFold || browser.isMini">{{ app.info.name }}</span> -->
     </div>
-
     <div class="app-slider__container">
       <el-scrollbar wrap-class="scrollbar-wrapper">
         <Menu />
@@ -97,14 +95,6 @@ import Menu from './menu';
         letter-spacing: 0.5px;
         height: 50px;
         line-height: 50px;
-
-        .wrap {
-          width: 100%;
-        }
-
-        .cl-svg {
-          font-size: 16px;
-        }
 
         span {
           display: inline-block;

@@ -6,8 +6,8 @@
 <template>
   <div class="app-topbar">
     <div class="app-topbar__left">
-      <el-icon><Fold /></el-icon>
-      <el-icon><Expand /></el-icon>
+      <el-icon v-if="isCollapse" @click="setCollapsed(false)"><Expand /></el-icon>
+      <el-icon v-else @click="setCollapsed(true)"><Fold /></el-icon>
     </div>
     <ul class="app-topbar__right">
       <!-- 多语言 -->
@@ -114,6 +114,13 @@ const handleClick = (item: { value: string }) => {
 const { logout } = useUser();
 const handleLogout = () => {
   logout();
+};
+// 是否折叠菜单
+const isCollapse = computed(() => {
+  return appStore.menuCollapse;
+});
+const setCollapsed = (val: boolean) => {
+  appStore.updateSettings({ menuCollapse: val });
 };
 </script>
 <style lang="scss" scoped>
