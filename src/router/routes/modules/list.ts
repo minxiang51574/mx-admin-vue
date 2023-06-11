@@ -14,7 +14,7 @@ const LIST: AppRouteRecordRaw = {
   meta: {
     locale: 'menu.dashboard',
     requiresAuth: true,
-    icon: 'icon-list',
+    icon: 'Edit',
   },
   children: [
     {
@@ -24,6 +24,7 @@ const LIST: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.server.dashboard',
         requiresAuth: true,
+        icon: 'Edit',
         roles: ['*'],
       },
     },
@@ -33,6 +34,7 @@ const LIST: AppRouteRecordRaw = {
       component: () => import('@/views/list/card/index.vue'),
       meta: {
         locale: 'menu.server.workplace',
+        icon: 'Edit',
         requiresAuth: true,
         roles: ['*'],
       },
@@ -43,6 +45,7 @@ const LIST: AppRouteRecordRaw = {
       component: () => import('@/views/list/workplace/index.vue'),
       meta: {
         locale: 'menu.server.monitor',
+        icon: 'Edit',
         requiresAuth: true,
         roles: ['*'],
       },

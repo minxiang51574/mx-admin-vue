@@ -10,6 +10,7 @@ const user = {
   meta: {
     locale: 'menu.list.cardList',
     requiresAuth: true,
+    icon: 'Location',
     roles: ['*'],
   },
 };

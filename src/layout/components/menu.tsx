@@ -8,7 +8,7 @@ import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter, RouteRecordRaw } from 'vue-router';
 import { appRoutes } from '@/router/routes';
 import { useAppStore } from '@/store';
-
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 export default defineComponent({
   setup() {
     const { t } = useI18n();
@@ -32,8 +32,12 @@ export default defineComponent({
           // 有子菜单
           if (item?.children && item?.children?.length > 0) {
             const slots = {
-              icon: () => item?.meta?.icon,
-              title: () => t(item.meta.locale),
+              title: () => (
+                <>
+                  {renderIcon(item.meta.icon)}
+                  <span>{t(item.meta.locale)}</span>
+                </>
+              ),
             };
             return (
               <el-sub-menu index={item.name} v-slots={slots}>
@@ -42,11 +46,29 @@ export default defineComponent({
             );
           } else {
             // 没有子菜单
-            return <el-menu-item index={item.name}>{t(item.meta.locale)}</el-menu-item>;
+            return (
+              <el-menu-item index={item.name}>
+                {renderIcon(item.meta.icon)}
+                {t(item.meta.locale)}
+              </el-menu-item>
+            );
           }
         });
       }
       return travel(menuTree);
+    };
+
+    // 渲染图标
+    const renderIcon = (icon?: string) => {
+      if (!icon) {
+        return null;
+      }
+      const IconComp = (ElementPlusIconsVue as any)[icon];
+      return (
+        <el-icon>
+          <IconComp />
+        </el-icon>
+      );
     };
 
     // 是否折叠菜单

@@ -10,15 +10,8 @@
     </div>
   </div>
 </template>
-<script lang="ts" name="app-slider" setup>
+<script lang="ts" setup>
 import Menu from './menu';
-// import { computed } from 'vue';
-// import { useRouter, useRoute } from 'vue-router';
-// import { useMenuStore } from '@/store';
-
-// const route = useRoute();
-// const menuStore = useMenuStore();
-// const menuList = menuStore.menuList;
 </script>
 <style lang="scss">
 .app-slider {
