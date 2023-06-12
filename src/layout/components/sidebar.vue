@@ -1,3 +1,8 @@
+<!--
+ * @Author       : Mx
+ * @Date         : 2023-06-12 19:14:06
+ * @Description  : 
+-->
 <template>
   <div class="app-slider">
     <div class="app-slider__logo">
@@ -51,35 +56,9 @@ import Menu from './menu';
   }
 
   &__menu {
-    &.el-popper {
-      &.is-light {
-        border: 0;
-      }
-    }
-
     .el-menu {
       border-right: 0;
       background-color: transparent;
-
-      &--popup {
-        .cl-svg,
-        span {
-          color: #000;
-        }
-      }
-
-      .el-sub-menu__title,
-      &-item {
-        &.is-active,
-        &:hover {
-          background-color: var(--color-primary) !important;
-
-          .cl-svg,
-          span {
-            color: #fff;
-          }
-        }
-      }
 
       .el-sub-menu__title,
       &-item,
@@ -88,23 +67,20 @@ import Menu from './menu';
         letter-spacing: 0.5px;
         height: 50px;
         line-height: 50px;
-
-        span {
-          display: inline-block;
-          font-size: 12px;
-          letter-spacing: 1px;
-          margin-left: 10px;
-          user-select: none;
-        }
       }
 
-      &--collapse {
-        .wrap {
-          text-align: center;
+      .el-sub-menu__title,
+      &-item {
+        &.is-active {
+          background-color: #4165d7 !important;
+          span {
+            // color: #fff;
+          }
         }
-
-        .el-sub-menu__title {
-          padding: 0;
+        &:hover {
+          span {
+            // color: #fff;
+          }
         }
       }
     }

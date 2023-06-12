@@ -35,4 +35,7 @@ const sidebarWidth = computed(() => {
 .el-container {
   height: 100%;
 }
+.el-aside {
+  transition: all 0.3s ease-in-out;
+}
 </style>
