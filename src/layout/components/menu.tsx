@@ -13,6 +13,7 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
     const route = useRoute();
+    console.log('route', route.path);
     const router = useRouter();
     const appStore = useAppStore();
     const menuTree = appRoutes;
@@ -49,7 +50,7 @@ export default defineComponent({
             return (
               <el-menu-item index={item.name}>
                 {renderIcon(item.meta.icon)}
-                {t(item.meta.locale)}
+                <span>{t(item.meta.locale)}</span>
               </el-menu-item>
             );
           }
@@ -79,10 +80,10 @@ export default defineComponent({
     return () => (
       <div class="app-slider__menu">
         <el-menu
-          default-active={route.path}
+          default-active={route.name}
           collapse={isCollapse.value}
+          unique-opened={true}
           background-color="transparent"
-          collapse-transition={true}
           onSelect={toView}
         >
           {renderMenu()}
