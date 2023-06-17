@@ -8,11 +8,11 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
 import useAppStore from './modules/app';
 import useUserStore from './modules/user';
-import useMenuStore from './modules/menu';
+import useTabBarStore from './modules/tab-bar';
 
 const store = createPinia();
 store.use(piniaPluginPersistedstate); // 使用持久化插件
 
-export { useUserStore, useAppStore, useMenuStore };
+export { useUserStore, useAppStore, useTabBarStore };
 
 export default store;

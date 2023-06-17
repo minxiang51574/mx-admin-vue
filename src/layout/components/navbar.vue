@@ -70,7 +70,7 @@
     </ul>
   </div>
 </template>
-<script lang="ts" name="app-topbar" setup>
+<script lang="ts" setup>
 import { Moon, Sunny, FullScreen, Notification, Fold, Expand, User, SwitchButton } from '@element-plus/icons-vue';
 // import RouteNav from './route-nav.vue';
 import useLocale from '@/hooks/locale';
@@ -128,7 +128,6 @@ const setCollapsed = (val: boolean) => {
   display: flex;
   align-items: center;
   height: 50px;
-  padding: 0 10px;
   margin-bottom: 10px;
   justify-content: space-between;
 
@@ -136,16 +135,17 @@ const setCollapsed = (val: boolean) => {
     display: flex;
     align-items: center;
     height: 100%;
+    cursor: pointer;
   }
 
   &__right {
     display: flex;
-    padding-right: 20px;
     list-style: none;
     li {
       display: flex;
       align-items: center;
       padding: 0 10px;
+      cursor: pointer;
     }
   }
 }

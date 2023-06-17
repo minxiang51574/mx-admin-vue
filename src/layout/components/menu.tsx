@@ -7,15 +7,15 @@ import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter, RouteRecordRaw } from 'vue-router';
 import { appRoutes } from '@/router/routes';
-import { useAppStore } from '@/store';
+import { useAppStore, useTabBarStore } from '@/store';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     const route = useRoute();
-    console.log('route', route.path);
     const router = useRouter();
     const appStore = useAppStore();
+    const tabBarStore = useTabBarStore();
     const menuTree = appRoutes;
 
     // 页面跳转 目前根据name去跳转 如需根据path自行完善
@@ -24,6 +24,7 @@ export default defineComponent({
       if (url !== route.name) {
         router.push({ name: url });
       }
+      tabBarStore.updateTabList(route); 
     };
 
     // 渲染菜单

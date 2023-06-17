@@ -1,13 +1,51 @@
 <template>
   <div class="app-process">
-    <div class="app-process__icon" @click="router.back">
-      <!-- <el-icon><arrow-left-bold /></el-icon> -->
+    <div class="app-process__icon">
+      <el-icon><arrow-left-bold /></el-icon>
       <span>后退</span>
     </div>
+
+    <div class="app-process__icon">
+      <el-icon><home-filled /></el-icon>
+      <span>首页</span>
+    </div>
+
+    <el-scrollbar class="app-process__scroller">
+      <div
+        v-for="(item, index) in tagList"
+        :key="index"
+        class="app-process__item active"
+        :class="{ active: item.active }"
+        :data-index="index"
+        @click="onTap(item, Number(index))"
+      >
+        <span>{{ item.meta?.label || item.name || item.path }}</span>
+        <!-- <el-icon @mousedown.stop="onDel(Number(index))">
+					<close-bold />
+				</el-icon> -->
+      </div>
+    </el-scrollbar>
   </div>
+  <!-- <div class="tabs-content">
+    <div class="tabs-scroll">
+      <el-tabs type="card">
+        <el-tab-pane v-for="(item, index) in tagList" :key="index" :name="item.id" :label="item.name">
+          {{ item.name }}
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+  </div> -->
 </template>
-<script lang="ts" name="app-process" setup></script>
-<style lang="scss" scoped>
+<script lang="ts" setup>
+import { computed } from 'vue';
+import { useAppStore, useTabBarStore } from '@/store';
+const tabBarStore = useTabBarStore();
+console.log('tabBarStore', tabBarStore);
+const tagList = computed(() => {
+  return tabBarStore.getTabList;
+});
+</script>
+<style scoped lang="scss">
 .app-process {
   display: flex;
   align-items: center;

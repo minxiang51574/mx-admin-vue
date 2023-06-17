@@ -10,17 +10,17 @@
     </el-aside>
     <el-container>
       <el-header>
-        <Topbar />
+        <Navbar />
       </el-header>
-      <Process />
+      <TabBar />
       <el-main><Main /></el-main>
     </el-container>
   </el-container>
 </template>
 <script lang="ts" name="app-layout" setup>
 import Sidebar from './components/sidebar.vue';
-import Topbar from './components/topbar.vue';
-import Process from './components/process.vue';
+import Navbar from './components/navbar.vue';
+import TabBar from './components/tabBar.vue';
 import Main from './components/main.vue';
 import { computed } from 'vue';
 import { useAppStore } from '@/store';
@@ -34,6 +34,7 @@ const sidebarWidth = computed(() => {
 <style lang="scss" scoped>
 .el-container {
   height: 100%;
+  // background-color: #f7f7f7;
 }
 .el-aside {
   transition: all 0.3s ease-in-out;
