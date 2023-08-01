@@ -23,13 +23,11 @@ Mock.mock(new RegExp('/api/user/login'), (params: MockParams) => {
     return failResponseWrap(null, '密码不能为空', 50000);
   }
   if (username === 'admin' && password === '123456') {
-    // window.localStorage.setItem('userRole', 'admin');
     return successResponseWrap({
       token: '12345',
     });
   }
   if (username === 'user' && password === 'user') {
-    // window.localStorage.setItem('userRole', 'user');
     return successResponseWrap({
       token: '54321',
     });

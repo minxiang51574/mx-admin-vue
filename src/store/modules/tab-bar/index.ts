@@ -1,11 +1,6 @@
-/*
- * @Author: Mx
- * @Date: 2023-05-31 17:42:25
- * @Description:
- */
 import type { RouteLocationNormalized } from 'vue-router';
 import { defineStore } from 'pinia';
-import { appRoutes } from '@/router/routes';
+// import { appRoutes } from '@/router/routes';
 import { TabBarState, TagProps } from './types';
 const formatTag = (route: RouteLocationNormalized): TagProps => {
   const { name, meta, fullPath, query } = route;
