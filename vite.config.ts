@@ -1,13 +1,3 @@
-/*
- * @Author       : Mx
- * @Date         : 2023-05-28 21:21:27
- * @Description  :
- */
-/*
- * @Author: Mx
- * @Date: 2023-05-27 14:38:32
- * @Description:
- */
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
